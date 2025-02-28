@@ -20,16 +20,22 @@ router.post("/:workspace/users", async (req, res) => {
   });
   
   // API to fetch users from a specific workspace
-  router.get("/:workspace/users", async (req, res) => {
-    const { workspace } = req.params;
+  router.get("/:workspace/:table", async (req, res) => {
+    const { workspace, table } = req.params;
+  
+    if (!/^[a-zA-Z0-9_]+$/.test(table)) {
+      return res.status(400).json({ error: "Invalid table name" });
+    }
   
     try {
-      const users = await query(workspace, "SELECT * FROM users");
-      res.json({ success: true, users });
+      const result = await query(workspace, `SELECT * FROM ${table}`);
+      res.json({ success: true, data: result.rows });
     } catch (error) {
+      console.error("Database Error:", error);
       res.status(500).json({ error: "Database Error" });
     }
   });
+  
   
   // 🛠️ Create a Table with Foreign Keys & Constraints
   router.post("/:workspace/create-table", async (req, res) => {
