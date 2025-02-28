@@ -1,9 +1,19 @@
+<<<<<<< HEAD
 # Logs
 logs
+=======
+# Node.js dependencies
+node_modules/
+.env
+
+# Logs
+logs/
+>>>>>>> 71fedf8087464f136fed8099cd5c26c45302289f
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+<<<<<<< HEAD
 lerna-debug.log*
 .pnpm-debug.log*
 
@@ -128,3 +138,24 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+=======
+
+# Environment variables
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build output
+dist/
+build/
+
+# Editor settings
+.vscode/
+.idea/
+*.iml
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+>>>>>>> 71fedf8087464f136fed8099cd5c26c45302289f
