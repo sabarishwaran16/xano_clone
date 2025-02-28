@@ -37,7 +37,7 @@ router.post("/:workspace/users", async (req, res) => {
   });
   
   
-  // 🛠️ Create a Table with Foreign Keys & Constraints
+  // Create a Table with Foreign Keys & Constraints
   router.post("/:workspace/create-table", async (req, res) => {
     const { workspace } = req.params;
     const { tableName, columns, foreignKeys } = req.body;
@@ -46,7 +46,6 @@ router.post("/:workspace/users", async (req, res) => {
       return res.status(400).json({ error: "Invalid request format" });
     }
   
-    // 📌 Generate Column Definitions
     const columnDefinitions = columns
       .map((col) => {
         let colDef = `${col.name} ${col.type}`;
@@ -61,7 +60,6 @@ router.post("/:workspace/users", async (req, res) => {
       })
       .join(", ");
   
-    // 📌 Generate Foreign Keys
     const foreignKeyDefinitions = foreignKeys
       ? foreignKeys
           .map(
@@ -88,7 +86,6 @@ router.post("/:workspace/users", async (req, res) => {
   });
   
   
-  // 🛠️ Create a PostgreSQL Function
   router.post("/:workspace/create-function", async (req, res) => {
     const { workspace } = req.params;
     const { functionName, functionBody, returnType, params } = req.body;
